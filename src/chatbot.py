@@ -1,26 +1,45 @@
 # DecodeLabs - Project 1
-# Etape 5 : La base de données
+# Etape 6 : Version FINALE complète
 
-# Le dictionnaire = la "mémoire" du chatbot
+# ============================
+# LA BASE DE DONNÉES
+# ============================
 RESPONSES = {
-    "bonjour":      "Salut ! Comment puis-je t'aider ?",
-    "salut":        "Hey ! Bienvenue chez DecodeLabs !",
-    "comment tu vas": "Je fonctionne à 100% ! Merci de demander 😄",
-    "c'est quoi l'ia": "L'IA, c'est enseigner à une machine à prendre des décisions !",
-    "qui t'a créé":  "Un stagiaire DecodeLabs avec du Python pur !",
-    "aide":         "Je connais : bonjour | salut | comment tu vas | aide | bye",
-    "bye":          "À bientôt ! Continue à coder 🚀",
+    "bonjour":          "Salut ! Comment puis-je t'aider ?",
+    "salut":            "Hey ! Bienvenue chez DecodeLabs !",
+    "comment tu vas":   "Je fonctionne à 100% ! Merci de demander 😄",
+    "c'est quoi l'ia":  "L'IA c'est enseigner à une machine à décider !",
+    "qui t'a créé":     "Un stagiaire DecodeLabs avec du Python pur !",
+    "aide":             "Je connais : bonjour | salut | comment tu vas | aide | bye",
+    "bye":              "À bientôt ! Continue à coder 🚀",
 }
 
-print("🤖 Chatbot démarré ! Tape 'exit' pour quitter.")
-print(f"📚 Base de données chargée : {len(RESPONSES)} réponses\n")
+# ============================
+# FONCTION : NETTOYER L'INPUT
+# ============================
+def sanitize(text):
+    return text.lower().strip()
+
+# ============================
+# FONCTION : TROUVER LA RÉPONSE
+# ============================
+def get_response(user_input):
+    return RESPONSES.get(user_input, "❓ Je ne comprends pas. Tape 'aide' !")
+
+# ============================
+# LA BOUCLE PRINCIPALE
+# ============================
+print("🤖 Chatbot DecodeLabs démarré !")
+print("📚 Réponses disponibles :", len(RESPONSES))
+print("💡 Tape 'aide' pour voir les commandes\n")
 
 while True:
     user_input = input("Toi: ")
-    clean_input = user_input.lower().strip()
+    clean_input = sanitize(user_input)
 
     if clean_input == "exit":
-        print("Bot: Au revoir !")
+        print("Bot: Arrêt du système. Au revoir ! 👋")
         break
 
-    print(f"Bot: clé recherchée → '{clean_input}'")
+    response = get_response(clean_input)
+    print(f"Bot: {response}\n")
