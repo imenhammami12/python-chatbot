@@ -1,10 +1,14 @@
+
 print("🤖 Chatbot démarré ! Tape 'exit' pour quitter.")
 
 while True:
     user_input = input("Toi: ")
 
-    if user_input == "exit":
+    # Nettoyage : minuscules + supprimer les espaces
+    clean_input = user_input.lower().strip()
+
+    if clean_input == "exit":
         print("Bot: Au revoir !")
         break
 
-    print("Bot: Je t'ai entendu !")
+    print(f"Bot: Tu as écrit → '{clean_input}'")
